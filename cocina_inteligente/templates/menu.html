@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Cocina Inteligente</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+
+            font-family: Arial;
+
+            background:#f4f6f9;
+
+            min-height:100vh;
+
+            padding:40px;
+
+        }
+
+        h1{
+
+            text-align:center;
+
+            margin-bottom:50px;
+
+            color:#2c3e50;
+
+            font-size:42px;
+
+        }
+
+        .contenedor{
+
+            display:grid;
+
+            grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+
+            gap:25px;
+
+            width:95%;
+
+            margin:auto;
+
+        }
+
+        .card{
+
+            background:white;
+
+            padding:30px;
+
+            border-radius:18px;
+
+            box-shadow:0 6px 18px rgba(0,0,0,0.1);
+
+            text-align:center;
+
+            transition:0.3s;
+
+        }
+
+        .card:hover{
+
+            transform:translateY(-8px);
+
+            box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+        }
+
+        .card h2{
+
+            margin-bottom:25px;
+
+            color:#2c3e50;
+
+            font-size:24px;
+
+        }
+
+        .card a{
+
+            text-decoration:none;
+
+            background:#3498db;
+
+            color:white;
+
+            padding:14px 22px;
+
+            border-radius:10px;
+
+            display:inline-block;
+
+            font-size:16px;
+
+            font-weight:bold;
+
+            transition:0.3s;
+
+        }
+
+        .card a:hover{
+
+            background:#2980b9;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>🍽 Cocina Inteligente</h1>
+
+<div class="contenedor">
+
+    <div class="card">
+
+        <h2>🔥 Horas Pico</h2>
+
+        <a href="/horas_pico/">
+
+            Ver consulta
+
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>📅 Reservaciones por Día</h2>
+
+        <a href="/reservaciones_dia/">
+
+            Ver consulta
+
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>❌ Total por Estado</h2>
+
+        <a href="/estado/">
+
+            Ver consulta
+
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>👥 Clientes Frecuentes</h2>
+
+        <a href="/clientes/">
+
+            Ver consulta
+
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>🪑 Mesas Más Utilizadas</h2>
+
+        <a href="/mesas/">
+
+            Ver consulta
+
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>⏱ Tiempo Promedio</h2>
+
+        <a href="/tiempo_promedio/">
+
+            Ver consulta
+
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>👨‍👩‍👧 Promedio Personas</h2>
+
+        <a href="/promedio_personas/">
+
+            Ver consulta
+
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>📊 Número Personas</h2>
+
+        <a href="/numero_personas/">
+
+            Ver consulta
+
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>🚫 No Shows</h2>
+
+        <a href="/no_shows/">
+
+            Ver consulta
+
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>📈 Fecha y Estado</h2>
+
+        <a href="/fecha_estado/">
+
+            Ver consulta
+
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>⭐ Calificación</h2>
+
+        <a href="/calificacion/">
+
+            Ver consulta
+
+        </a>
+
+    </div>
+
+
+
+</div>
+
+</body>
+</html>

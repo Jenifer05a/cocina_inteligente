@@ -1,0 +1,247 @@
+<!-- consultas.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <title>{{ titulo }}</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(135deg,#eef2f7,#dbe7f5);
+
+            min-height:100vh;
+
+            padding:40px;
+
+        }
+
+        .contenedor{
+
+            width:95%;
+
+            margin:auto;
+
+        }
+
+        .card{
+
+            background:white;
+
+            border-radius:20px;
+
+            padding:35px;
+
+            box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+            overflow:hidden;
+
+        }
+
+        .encabezado{
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            margin-bottom:30px;
+
+            border-bottom:2px solid #f0f0f0;
+
+            padding-bottom:20px;
+
+        }
+
+        h1{
+
+            color:#1f2d3d;
+
+            font-size:36px;
+
+        }
+
+        .boton{
+
+            text-decoration:none;
+
+            background:#3498db;
+
+            color:white;
+
+            padding:12px 22px;
+
+            border-radius:10px;
+
+            font-weight:bold;
+
+            transition:0.3s;
+
+        }
+
+        .boton:hover{
+
+            background:#217dbb;
+
+            transform:scale(1.05);
+
+        }
+
+        table{
+
+            width:100%;
+
+            border-collapse: collapse;
+
+            overflow:hidden;
+
+            border-radius:15px;
+
+        }
+
+        thead{
+
+            background: linear-gradient(90deg,#2c3e50,#34495e);
+
+            color:white;
+
+        }
+
+        th{
+
+            padding:18px;
+
+            text-align:center;
+
+            font-size:17px;
+
+            letter-spacing:1px;
+
+        }
+
+        td{
+
+            padding:16px;
+
+            text-align:center;
+
+            border-bottom:1px solid #e5e5e5;
+
+            font-size:15px;
+
+            color:#333;
+
+        }
+
+        tbody tr{
+
+            transition:0.2s;
+
+        }
+
+        tbody tr:nth-child(even){
+
+            background:#f8fbff;
+
+        }
+
+        tbody tr:hover{
+
+            background:#dfefff;
+
+            transform:scale(1.01);
+
+        }
+
+        .tabla-contenedor{
+
+            overflow-x:auto;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <div class="card">
+
+        <div class="encabezado">
+
+            <h1>{{ titulo }}</h1>
+
+            <a href="/" class="boton">
+
+                ← Volver al menú
+
+            </a>
+
+        </div>
+
+
+        <div class="tabla-contenedor">
+
+            <table>
+
+                {% if reservaciones %}
+
+                    <thead>
+
+                        <tr>
+
+                            {% for key, value in reservaciones.0.items %}
+
+                                <th>{{ key }}</th>
+
+                            {% endfor %}
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for r in reservaciones %}
+
+                            <tr>
+
+                                {% for key, value in r.items %}
+
+                                    <td>{{ value }}</td>
+
+                                {% endfor %}
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                {% endif %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

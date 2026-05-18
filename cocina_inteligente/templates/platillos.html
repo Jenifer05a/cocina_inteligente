@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Platillos</title>
+</head>
+<body>
+
+<h1>
+    {% if modo_ver %}Ver detalle del platillo Formulario {% endfor %}
+</h1>
+
+{% if modo_ver %}
+<div class="contenedor_detalle">
+    {% if platillo.image %}
+    <img src="{{platillo.imagen.url}}" class="imagen-detalle">
+    {% endif %}
+
+    <p><strong>Nombre:</strong>{{ platillo.nombre_platillo }}</p>
+    <p><strong>Descripción:</strong>{{ platillo.descripcion }}</p>
+    <p><strong>Precio:</strong>{{ platillo.precio }}</p>
+    <p><strong>Categoria:</strong>{{ platillo.categoria }}</p>
+    {% if platillo.disponibilidad %}
+       <p class="disponible">✅ Disponible </p>
+    {% else %}
+       <p class="no_disponible">❌ No disponible</p>
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+
+</body>
+</html>
