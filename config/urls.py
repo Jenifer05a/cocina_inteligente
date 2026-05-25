@@ -2,10 +2,13 @@ from django.contrib import admin
 from django.urls import path
 from cocina_inteligente import views
 from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
 
-    path('', views.menu, name='menu'),
+    path('', views.inicio, name='inicio'),
+
+    path('menu/', views.menu, name='menu'),
 
     path('horas_pico/', views.horas_pico, name='horas_pico'),
 
@@ -39,5 +42,9 @@ urlpatterns = [
 
     path('eliminar_platillo/<int:id>/',views.eliminar_platillo,name='eliminar_platillo'),
 
-
 ]
+
+urlpatterns += static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+)

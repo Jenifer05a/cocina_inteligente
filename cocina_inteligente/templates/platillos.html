@@ -1,35 +1,486 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
+
     <meta charset="UTF-8">
-    <title>Platillos</title>
+
+    <title>Menú de Platillos</title>
+
+<style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    body{
+
+        font-family:Arial, sans-serif;
+
+        background:#f4f6f9;
+
+        padding:40px;
+
+    }
+
+    h1{
+
+        text-align:center;
+
+        margin-bottom:40px;
+
+        color:#2c3e50;
+
+        font-size:40px;
+
+    }
+
+    .alerta{
+
+        background:#2ecc71;
+
+        color:white;
+
+        padding:15px;
+
+        border-radius:10px;
+
+        margin-bottom:25px;
+
+        text-align:center;
+
+        font-weight:bold;
+
+        animation:desaparecer 4s forwards;
+
+    }
+
+    @keyframes desaparecer{
+
+        0%{
+            opacity:1;
+        }
+
+        80%{
+            opacity:1;
+        }
+
+        100%{
+            opacity:0;
+        }
+
+    }
+
+    .top-bar{
+
+        display:flex;
+
+        justify-content:space-between;
+
+        align-items:center;
+
+        margin-bottom:40px;
+
+        flex-wrap:wrap;
+
+        gap:15px;
+
+    }
+
+    .btn{
+
+        text-decoration:none;
+
+        color:white;
+
+        padding:12px 22px;
+
+        border-radius:10px;
+
+        font-weight:bold;
+
+        transition:0.3s;
+
+    }
+
+    .btn:hover{
+
+        transform:translateY(-3px);
+
+    }
+
+    .btn-crear{
+
+        background:#2ecc71;
+
+    }
+
+    .btn-crear:hover{
+
+        background:#27ae60;
+
+    }
+
+    .btn-inicio{
+
+        background:#3498db;
+
+    }
+
+    .btn-inicio:hover{
+
+        background:#2980b9;
+
+    }
+
+    .contenedor{
+
+        display:grid;
+
+        grid-template-columns:
+        repeat(auto-fit, minmax(300px,1fr));
+
+        gap:25px;
+
+    }
+
+    .card{
+
+        background:white;
+
+        border-radius:18px;
+
+        overflow:hidden;
+
+        box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+        transition:0.3s;
+
+    }
+
+    .card:hover{
+
+        transform:translateY(-8px);
+
+        box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+    }
+
+    .imagen-contenedor{
+
+        width:100%;
+
+        height:180px;
+
+        background:#ecf0f1;
+
+        display:flex;
+
+        justify-content:center;
+
+        align-items:center;
+
+        overflow:hidden;
+
+        padding:10px;
+
+    }
+
+    .imagen-contenedor img{
+
+        width:100%;
+
+        height:100%;
+
+        object-fit:contain;
+
+        border-radius:10px;
+
+    }
+
+    .contenido{
+
+        padding:18px;
+
+    }
+
+    .contenido h2{
+
+        color:#2c3e50;
+
+        margin-bottom:10px;
+
+        font-size:22px;
+
+        min-height:50px;
+
+    }
+
+    .descripcion{
+
+        color:#555;
+
+        margin-bottom:15px;
+
+        line-height:1.5;
+
+        font-size:15px;
+
+        height:70px;
+
+        overflow:hidden;
+
+    }
+
+    .precio{
+
+        font-size:20px;
+
+        font-weight:bold;
+
+        color:#27ae60;
+
+        margin-bottom:10px;
+
+    }
+
+    .categoria{
+
+        margin-bottom:10px;
+
+        color:#7f8c8d;
+
+        font-size:15px;
+
+    }
+
+    .estado{
+
+        margin-bottom:15px;
+
+        font-weight:bold;
+
+        font-size:15px;
+
+    }
+
+    .acciones{
+
+        display:flex;
+
+        gap:8px;
+
+        flex-wrap:wrap;
+
+    }
+
+    .acciones a{
+
+        text-decoration:none;
+
+        color:white;
+
+        padding:8px 12px;
+
+        border-radius:8px;
+
+        font-size:13px;
+
+        transition:0.3s;
+
+    }
+
+    .ver{
+
+        background:#3498db;
+
+    }
+
+    .ver:hover{
+
+        background:#2980b9;
+
+    }
+
+    .editar{
+
+        background:#f39c12;
+
+    }
+
+    .editar:hover{
+
+        background:#d68910;
+
+    }
+
+    .eliminar{
+
+        background:#e74c3c;
+
+    }
+
+    .eliminar:hover{
+
+        background:#c0392b;
+
+    }
+
+    .vacio{
+
+        text-align:center;
+
+        font-size:22px;
+
+        color:#7f8c8d;
+
+        margin-top:50px;
+
+    }
+
+</style>
+
 </head>
+
 <body>
 
-<h1>
-    {% if modo_ver %}Ver detalle del platillo Formulario {% endfor %}
-</h1>
+<h1>🍔 Menú de Platillos</h1>
 
-{% if modo_ver %}
-<div class="contenedor_detalle">
-    {% if platillo.image %}
-    <img src="{{platillo.imagen.url}}" class="imagen-detalle">
-    {% endif %}
 
-    <p><strong>Nombre:</strong>{{ platillo.nombre_platillo }}</p>
-    <p><strong>Descripción:</strong>{{ platillo.descripcion }}</p>
-    <p><strong>Precio:</strong>{{ platillo.precio }}</p>
-    <p><strong>Categoria:</strong>{{ platillo.categoria }}</p>
-    {% if platillo.disponibilidad %}
-       <p class="disponible">✅ Disponible </p>
-    {% else %}
-       <p class="no_disponible">❌ No disponible</p>
+{% if messages %}
+
+    {% for message in messages %}
+
+        <div class="alerta">
+
+            {{ message }}
+
+        </div>
+
     {% endfor %}
+
+{% endif %}
+
+
+<div class="top-bar">
+
+    <a href="{% url 'crear_platillo' %}"
+       class="btn btn-crear">
+
+        ➕ Agregar Platillo
+
+    </a>
+
+    <a href="/"
+       class="btn btn-inicio">
+
+        🏠 Volver al Inicio
+
+    </a>
 
 </div>
 
-{% else %}
 
+<div class="contenedor">
+
+{% for platillo in platillos %}
+
+    <div class="card">
+
+        <div class="imagen-contenedor">
+
+            {% if platillo.imagen %}
+
+                <img src="{{ platillo.imagen.url }}"
+                     alt="{{ platillo.nombre_platillo }}">
+
+            {% else %}
+
+                <img src="https://via.placeholder.com/250x200?text=Sin+Imagen"
+                     alt="Sin imagen">
+
+            {% endif %}
+
+        </div>
+
+        <div class="contenido">
+
+            <h2>{{ platillo.nombre_platillo }}</h2>
+
+            <p class="descripcion">
+                {{ platillo.descripcion }}
+            </p>
+
+            <p class="precio">
+                ${{ platillo.precio }}
+            </p>
+
+            <p class="categoria">
+
+                <strong>Categoría:</strong>
+                {{ platillo.get_categoria_display }}
+
+            </p>
+
+            {% if platillo.disponible %}
+
+                <p class="estado">
+                    ✅ Disponible
+                </p>
+
+            {% else %}
+
+                <p class="estado">
+                    ❌ No disponible
+                </p>
+
+            {% endif %}
+
+            <div class="acciones">
+
+                <a href="{% url 'detalle_platillo' platillo.id %}"
+                   class="ver">
+
+                    👁 Ver
+
+                </a>
+
+                <a href="{% url 'editar_platillo' platillo.id %}"
+                   class="editar">
+
+                    ✏ Editar
+
+                </a>
+
+                <a href="{% url 'eliminar_platillo' platillo.id %}"
+                   class="eliminar"
+
+                   onclick="return confirm(
+                   '¿Seguro que deseas eliminar este platillo?'
+                   )">
+
+                    🗑 Eliminar
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% empty %}
+
+    <p class="vacio">
+
+        No hay platillos registrados.
+
+    </p>
+
+{% endfor %}
+
+</div>
 
 </body>
 </html>
