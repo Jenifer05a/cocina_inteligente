@@ -29,6 +29,9 @@
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
     <assistants>
+      <assistant-state connection-id="5709db9a-4465-4a6f-ad3f-86d20fbd3e42" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
+        <tools />
+      </assistant-state>
       <assistant-state connection-id="5709db9a-4465-4a6f-ad3f-86d20fbd3e42" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="BA12A50A277B4F529042D5B4B0133822" availability="AVAILABLE" acknowledgement="ENGAGED" selected="true">
         <chats>
           <chat id="BA12A50A277B4F529042D5B4B0133822" title="" session-signature="" timestamp="1778214884062">
@@ -36,9 +39,6 @@
             <context provider="" profile="" model="" action="" interactive="true" />
           </chat>
         </chats>
-        <tools />
-      </assistant-state>
-      <assistant-state connection-id="5709db9a-4465-4a6f-ad3f-86d20fbd3e42" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
     </assistants>
@@ -125,24 +125,6 @@ FROM cocina_inteligente_resena;]]></console>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="5709db9a-4465-4a6f-ad3f-86d20fbd3e42" />
     <connection id="e8252137-5f71-49f4-b0ab-f44f0903d16c" />
-  </component>
-  <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="5709db9a-4465-4a6f-ad3f-86d20fbd3e42" dataset="main.cocina_inteligente_reservacion" active-filter-id="67803f3d-9e12-4e19-9758-56a39d9021b8">
-      <filter id="67803f3d-9e12-4e19-9758-56a39d9021b8" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
-        <condition column="id" operator="=" value="" active="true" />
-      </filter>
-    </filter-actions>
-    <filter-actions connection-id="5709db9a-4465-4a6f-ad3f-86d20fbd3e42" dataset="main.cocina_inteligente_mesa" active-filter-id="2e935797-95a0-455f-9fc6-363fefeb6c28">
-      <filter id="2e935797-95a0-455f-9fc6-363fefeb6c28" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
-        <condition column="id" operator="=" value="" active="true" />
-      </filter>
-    </filter-actions>
-    <filter-actions connection-id="5709db9a-4465-4a6f-ad3f-86d20fbd3e42" dataset="main.cocina_inteligente_cliente" active-filter-id="EMPTY_FILTER">
-      <filter id="dcd719a7-f1c8-4bce-bc4a-4b75579b0a9b" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
-        <condition column="id" operator="=" value="" active="true" />
-      </filter>
-    </filter-actions>
-    <filter-actions connection-id="5709db9a-4465-4a6f-ad3f-86d20fbd3e42" dataset="main.cocina_inteligente_resena" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />

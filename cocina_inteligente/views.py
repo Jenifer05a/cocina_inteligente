@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count, Avg
 from .models import Reservacion, Resena, Platillo
 from datetime import datetime
+from .forms import PlatilloForm
+from django.contrib import messages
 
 
 def menu(request):
@@ -326,90 +328,182 @@ def tiempo_promedio_estancia(request):
 
     )
 
+from django.shortcuts import (
+    render,
+    redirect,
+    get_object_or_404
+)
+
+from django.contrib import messages
+
+from .models import Platillo
+
+from .forms import PlatilloForm
+
 
 # =========================
 # LISTAR PLATILLOS
 # =========================
+
 def ver_platillos(request):
 
     platillos = Platillo.objects.all()
 
     return render(request, 'platillos.html', {
+
         'platillos': platillos
+
     })
 
 
 # =========================
 # CREAR PLATILLO
 # =========================
+
 def crear_platillo(request):
 
     if request.method == 'POST':
 
-        platillo = Platillo(
-            nombre=request.POST['nombre'],
-            descripcion=request.POST['descripcion'],
-            precio=request.POST['precio'],
-            categoria=request.POST['categoria'],
-            disponible='disponible' in request.POST,
-            imagen=request.FILES.get('imagen')
+        formulario = PlatilloForm(
+
+            request.POST,
+            request.FILES
+
         )
 
-        platillo.save()
+        if formulario.is_valid():
 
-        return redirect('platillos')
+            formulario.save()
 
-    return render(request, 'form_platillo.html')
+            messages.success(
+
+                request,
+
+                '✅ Platillo agregado correctamente'
+
+            )
+
+            return redirect('platillos')
+
+    else:
+
+        formulario = PlatilloForm()
+
+    return render(request, 'form_platillo.html', {
+
+        'formulario': formulario,
+
+        'modo_ver': False
+
+    })
 
 
 # =========================
 # VER DETALLE
 # =========================
+
 def detalle_platillo(request, id):
 
-    platillo = get_object_or_404(Platillo, pk=id)
+    platillo = get_object_or_404(
+
+        Platillo,
+
+        pk=id
+
+    )
 
     return render(request, 'form_platillo.html', {
+
         'platillo': platillo,
+
         'modo_ver': True
+
     })
 
 
 # =========================
 # EDITAR PLATILLO
 # =========================
+
 def editar_platillo(request, id):
 
-    platillo = get_object_or_404(Platillo, pk=id)
+    platillo = get_object_or_404(
+
+        Platillo,
+
+        pk=id
+
+    )
 
     if request.method == 'POST':
 
-        platillo.nombre = request.POST['nombre']
-        platillo.descripcion = request.POST['descripcion']
-        platillo.precio = request.POST['precio']
-        platillo.categoria = request.POST['categoria']
-        platillo.disponible = 'disponible' in request.POST
+        formulario = PlatilloForm(
 
-        if 'imagen' in request.FILES:
-            platillo.imagen = request.FILES['imagen']
+            request.POST,
+            request.FILES,
+            instance=platillo
 
-        platillo.save()
+        )
 
-        return redirect('platillos')
+        if formulario.is_valid():
+
+            formulario.save()
+
+            messages.success(
+
+                request,
+
+                '✏ Platillo editado correctamente'
+
+            )
+
+            return redirect('platillos')
+
+    else:
+
+        formulario = PlatilloForm(
+
+            instance=platillo
+
+        )
 
     return render(request, 'form_platillo.html', {
+
+        'formulario': formulario,
+
         'platillo': platillo,
+
         'modo_ver': False
+
     })
 
 
 # =========================
 # ELIMINAR PLATILLO
 # =========================
+
 def eliminar_platillo(request, id):
 
-    platillo = get_object_or_404(Platillo, pk=id)
+    platillo = get_object_or_404(
+
+        Platillo,
+
+        pk=id
+
+    )
 
     platillo.delete()
 
+    messages.success(
+
+        request,
+
+        '🗑 Platillo eliminado correctamente'
+
+    )
+
     return redirect('platillos')
+
+def inicio(request):
+
+    return render(request, 'inicio.html')

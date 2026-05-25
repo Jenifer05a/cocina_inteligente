@@ -53,8 +53,8 @@ class Platillo(models.Model):
 
     ]
     categoria = models.CharField(max_length=30, choices=CATEGORIAS, verbose_name="Categoria")
-    disponibilidad = models.BooleanField(default=False, verbose_name="Disponibilidad")
-    imagen= models.ImageField(upload_to='platillos', verbose_name="Imagen", null=True, blank=True)
+    disponible = models.BooleanField(default=False, verbose_name="Disponible")
+    imagen = models.ImageField(upload_to='',verbose_name="Imagen",null=True,blank=True)
 
     def __str__(self):
         return f"{self.nombre_platillo, self.categoria, self.disponibilidad, self.precio}"
